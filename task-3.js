@@ -16,14 +16,13 @@ const images = [
   },
 ];
 
-const createGalleryItem = ({ url, alt }) =>
-  `<li><img src="${url}" alt="${alt}" width = 200 height = 150></li>`;
-const galleryMarkup = images.reduce(
-  (acc, item) => acc + createGalleryItem(item),
-  ""
-);
 
-const galleryList = document.querySelector("#gallery");
-galleryList.insertAdjacentHTML("afterbegin", galleryMarkup);
-galleryList.setAttribute("style", "list-style-type:none; display: flexbox;");
-console.log(galleryList);
+const imgEl = document.querySelector('#gallery');
+imgEl.insertAdjacentHTML(
+'afterbegin',
+ images.reduce((acc, { url, alt }) => {
+ acc += `<li><img src="${url}" alt="${alt}" width = 200 height = 150/></li>`;
+return acc;
+}, ''),
+);
+imgEl.setAttribute('style', 'list-style-type:none; display: flexbox;');
